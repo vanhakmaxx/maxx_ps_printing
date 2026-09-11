@@ -30,8 +30,8 @@ namespace maxx_pos
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbYear = new System.Windows.Forms.ComboBox();
             this.cmbMonth = new System.Windows.Forms.ComboBox();
@@ -59,17 +59,19 @@ namespace maxx_pos
             this.label7 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.dgvDevice = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtEmployeeNo = new System.Windows.Forms.TextBox();
-            this.comboCategory = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEmpNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEmpName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPayInYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPayInMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.payInStep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cboEmployeeStatus = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtEmployeeNo = new System.Windows.Forms.TextBox();
+            this.comboCategory = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDevice)).BeginInit();
             this.panel1.SuspendLayout();
@@ -281,6 +283,7 @@ namespace maxx_pos
             this.cboPayslipOption.Name = "cboPayslipOption";
             this.cboPayslipOption.Size = new System.Drawing.Size(133, 21);
             this.cboPayslipOption.TabIndex = 258;
+            this.cboPayslipOption.SelectedIndexChanged += new System.EventHandler(this.cboPayslipOption_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -311,13 +314,13 @@ namespace maxx_pos
             this.dgvDevice.BackgroundColor = System.Drawing.Color.White;
             this.dgvDevice.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvDevice.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDevice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDevice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDevice.ColumnHeadersHeight = 40;
             this.dgvDevice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvDevice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -337,76 +340,20 @@ namespace maxx_pos
             this.dgvDevice.Name = "dgvDevice";
             this.dgvDevice.ReadOnly = true;
             this.dgvDevice.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDevice.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDevice.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDevice.RowHeadersVisible = false;
             this.dgvDevice.RowHeadersWidth = 51;
             this.dgvDevice.RowTemplate.Height = 35;
             this.dgvDevice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDevice.Size = new System.Drawing.Size(1343, 588);
             this.dgvDevice.TabIndex = 239;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.txtEmployeeNo);
-            this.panel1.Controls.Add(this.comboCategory);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.cboPayslipOption);
-            this.panel1.Controls.Add(this.cboDepartment);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1343, 40);
-            this.panel1.TabIndex = 260;
-            // 
-            // txtEmployeeNo
-            // 
-            this.txtEmployeeNo.Location = new System.Drawing.Point(102, 5);
-            this.txtEmployeeNo.Name = "txtEmployeeNo";
-            this.txtEmployeeNo.Size = new System.Drawing.Size(143, 26);
-            this.txtEmployeeNo.TabIndex = 261;
-            this.txtEmployeeNo.TextChanged += new System.EventHandler(this.txtEmployeeNo_TextChanged);
-            // 
-            // comboCategory
-            // 
-            this.comboCategory.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboCategory.FormattingEnabled = true;
-            this.comboCategory.Items.AddRange(new object[] {
-            "Payslip",
-            "Payslip (Option 1)",
-            "Payslip (Option 2)"});
-            this.comboCategory.Location = new System.Drawing.Point(832, 9);
-            this.comboCategory.Name = "comboCategory";
-            this.comboCategory.Size = new System.Drawing.Size(133, 21);
-            this.comboCategory.TabIndex = 260;
-            this.comboCategory.SelectedIndexChanged += new System.EventHandler(this.comboCategory_SelectedIndexChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(765, 9);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 19);
-            this.label8.TabIndex = 259;
-            this.label8.Text = "Category";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 8);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 19);
-            this.label9.TabIndex = 251;
-            this.label9.Text = "Employee No";
             // 
             // colID
             // 
@@ -455,6 +402,87 @@ namespace maxx_pos
             this.payInStep.Name = "payInStep";
             this.payInStep.ReadOnly = true;
             this.payInStep.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cboEmployeeStatus);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.txtEmployeeNo);
+            this.panel1.Controls.Add(this.comboCategory);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.cboPayslipOption);
+            this.panel1.Controls.Add(this.cboDepartment);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1343, 40);
+            this.panel1.TabIndex = 260;
+            // 
+            // cboEmployeeStatus
+            // 
+            this.cboEmployeeStatus.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEmployeeStatus.FormattingEnabled = true;
+            this.cboEmployeeStatus.Items.AddRange(new object[] {
+            "All",
+            "MA",
+            "Resigned",
+            "Exclude Both"});
+            this.cboEmployeeStatus.Location = new System.Drawing.Point(1095, 9);
+            this.cboEmployeeStatus.Name = "cboEmployeeStatus";
+            this.cboEmployeeStatus.Size = new System.Drawing.Size(133, 21);
+            this.cboEmployeeStatus.TabIndex = 263;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(981, 9);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(110, 19);
+            this.label10.TabIndex = 262;
+            this.label10.Text = "Employee Status";
+            // 
+            // txtEmployeeNo
+            // 
+            this.txtEmployeeNo.Location = new System.Drawing.Point(102, 5);
+            this.txtEmployeeNo.Name = "txtEmployeeNo";
+            this.txtEmployeeNo.Size = new System.Drawing.Size(143, 26);
+            this.txtEmployeeNo.TabIndex = 261;
+            this.txtEmployeeNo.TextChanged += new System.EventHandler(this.txtEmployeeNo_TextChanged);
+            // 
+            // comboCategory
+            // 
+            this.comboCategory.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboCategory.FormattingEnabled = true;
+            this.comboCategory.Items.AddRange(new object[] {
+            "Payslip",
+            "Payslip (Option 1)",
+            "Payslip (Option 2)"});
+            this.comboCategory.Location = new System.Drawing.Point(832, 9);
+            this.comboCategory.Name = "comboCategory";
+            this.comboCategory.Size = new System.Drawing.Size(133, 21);
+            this.comboCategory.TabIndex = 260;
+            this.comboCategory.SelectedIndexChanged += new System.EventHandler(this.comboCategory_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(765, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 19);
+            this.label8.TabIndex = 259;
+            this.label8.Text = "Category";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 8);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(90, 19);
+            this.label9.TabIndex = 251;
+            this.label9.Text = "Employee No";
             // 
             // FRMMAIN
             // 
@@ -539,6 +567,8 @@ namespace maxx_pos
         private System.Windows.Forms.DataGridViewTextBoxColumn colPayInYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPayInMonth;
         private System.Windows.Forms.DataGridViewTextBoxColumn payInStep;
+        private System.Windows.Forms.ComboBox cboEmployeeStatus;
+        private System.Windows.Forms.Label label10;
     }
 }
 

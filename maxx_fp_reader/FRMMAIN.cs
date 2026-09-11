@@ -59,6 +59,7 @@ namespace maxx_pos
             ComboBoxHelper.PopulateWithMonths(cmbMonth);
             ComboBoxHelper.Populate(cmbStep, new List<string> { "1", "2" });
             ComboBoxHelper.PopulateWithPrinters(comboBoxPrinters);
+            cboEmployeeStatus.SelectedIndex = 0;
         }
         private async Task LoadDataAsync()
         {
@@ -130,6 +131,7 @@ namespace maxx_pos
         private async void btnSearch_Click(object sender, EventArgs e)
         {
             string response = await GetEmployeePRAsync();
+            btnPrint.Enabled = true;
             displayRecords(response);
         }
         private async Task<string> GetEmployeePRAsync()
@@ -141,6 +143,22 @@ namespace maxx_pos
             string categoryCode = comboCategory.SelectedItem?.ToString();
             string employeeNo = txtEmployeeNo.Text;
             string branch = cboBranch.Text;
+            string ma_or_resigned = cboEmployeeStatus.SelectedItem?.ToString();
+            string payslip_option = cboPayslipOption.SelectedItem?.ToString();
+
+            if (ma_or_resigned == "All")
+            {
+                ma_or_resigned = "";
+            } else if (ma_or_resigned == "MA")
+            {
+                ma_or_resigned = "ma";
+            } else if (ma_or_resigned == "Resigned")
+            {
+                ma_or_resigned = "resigned";
+            } else
+            {
+                ma_or_resigned = "exclude_both";
+            }
             var data = new
             {
                 year = year,
@@ -149,7 +167,9 @@ namespace maxx_pos
                 department_code = departmentCode,
                 category_code = categoryCode,
                 employee_no = employeeNo,
-                branch = branch
+                branch = branch,
+                ma_or_resigned = ma_or_resigned,
+                payslip_option = payslip_option,
             };
             string apiUrl = $"{url}?token={token}";
             return await apiService.PostAsync(apiUrl, data);
@@ -182,7 +202,12 @@ namespace maxx_pos
                     row.Cells["colEmpName"].Value = record["name"].ToString();
                     row.Cells["colPayInYear"].Value = record["department_code"].ToString();
                     row.Cells["colPayInMonth"].Value = record["position_code"].ToString();
-                    row.Cells["payInStep"].Value = record["team_code"].ToString();                                       
+                    row.Cells["payInStep"].Value = record["team_code"].ToString();
+
+                    if (string.IsNullOrEmpty(record["tax_er_pay_amount_o_o"]?.ToString()))
+                    {
+                        record["tax_er_pay_amount_o_o"] = 0;
+                    }
                 }                
                 ds.Tables.Clear();
                 DataTable dt = App.JArrayToDataTable(records);
@@ -201,18 +226,23 @@ namespace maxx_pos
             string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Payslips");
             string payslip = cboPayslipOption.SelectedItem?.ToString();
             string reportName = "payslip";
-            if (payslip == "Payslip (Option 1)")
-            {
-                folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Payslip (Option 1)");
-                reportName = "payslip1";
-            }
-            else if(payslip == "Payslip (Option 2)")
-            {
-                folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Payslip (Option 2)");
-                reportName = "payslip2";
-            }
+            //if (payslip == "Payslip (Option 1)")
+            //{
+            //    folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Payslip (Option 1)");
+            //    reportName = "payslip1";
+            //}
+            //else if(payslip == "Payslip (Option 2)")
+            //{
+            //    folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Payslip (Option 2)");
+            //    reportName = "payslip1";
+            //}
+            //else
+            //{
+            folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Payslip");
+            reportName = "payslip1";
+            //}
 
-                
+
 
 
             btnPrint.Enabled = false;
@@ -387,6 +417,12 @@ namespace maxx_pos
         private void comboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvDevice.Rows.Clear();
+        }
+
+        private void cboPayslipOption_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnPrint.Enabled = false;
+            btnSearch.Focus();
         }
     }
 }

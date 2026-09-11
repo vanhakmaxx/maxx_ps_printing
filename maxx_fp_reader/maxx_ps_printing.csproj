@@ -203,6 +203,9 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Classes\RdlcPrinterDirrect.cs" />
+    <Compile Include="DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -277,6 +280,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lib\dlls\Nevron.Presentation.dll" />
+    <Content Include="lib\dlls\Nevron.System.dll" />
     <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
